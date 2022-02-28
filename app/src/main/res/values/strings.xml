@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">Pizza</string>
+    <string name="order_pizza">Order pizza</string>
+    <string name="begin">Begin</string>
+    <string name="choose_your_type">Choose your type</string>
+    <string name="cancel">cancel</string>
+    <string name="next">next</string>
+    <string name="category">Category</string>
+    <string name="ingredients">ingredients</string>
+    <string name="extras">extras</string>
+    <string name="plus">+</string>
+    <string name="pizza_title">Pizza Title</string>
+    <string name="order_another_pizza">Order another pizza ?</string>
+    <string name="send">send</string>
+    <string name="your_name">Your name</string>
+    <string name="your_address">Your Address</string>
+    <string name="m">M</string>
+    <string name="s">S</string>
+    <string name="l">L</string>
+    <string name="xxl">XXL</string>
+    <string name="xl">XL</string>
+    <string name="size">Size</string>
+
+    <string-array name="pizza_sizes">
+        <item name="S">Small</item>
+        <item name="M">Medium</item>
+        <item name="L">Large</item>
+        <item name="XL">Extra-Large</item>
+        <item name="XXL">Extra-extra-large</item>
+    </string-array>
+
+    <string-array name="pizza_categories">
+        <item name="custom_pizza">Custom</item>
+        <item name="neapolitan">Neapolitan</item>
+        <item name="pepperoni">Pepperoni</item>
+        <item name="vegetarian">Vegetarian</item>
+        <item name="fourCheeses">Four cheeses</item>
+        <item name="pineapple">Pineapple</item>
+    </string-array>
+
+    <string-array name="pizza_ingredients">
+        <item name="mozzarella">Mozzarella</item>
+        <item name="provolone">Provolone</item>
+        <item name="gorgonzola">Gorgonzola</item>
+        <item name="cheddar">Cheddar</item>
+        <item name="pepperoni">Pepperoni</item>
+        <item name="bacon">Bacon</item>
+        <item name="chicken">Chicken</item>
+        <item name="beef">Ground Beef</item>
+        <item name="ham">Ham</item>
+        <item name="basil">Basil</item>
+        <item name="cream">Sour cream</item>
+        <item name="potato">Potatoes</item>
+        <item name="pepper">Pepper</item>
+        <item name="onion">Onion</item>
+        <item name="mushrooms">Mushrooms</item>
+        <item name="pineapple">Pineapple</item>
+    </string-array>
+
+
+</resources>
