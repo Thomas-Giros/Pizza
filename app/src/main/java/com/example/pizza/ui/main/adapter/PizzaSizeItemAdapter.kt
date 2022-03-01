@@ -1,24 +1,25 @@
 package com.example.pizza.ui.main.adapter
 
-import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
+import android.widget.RadioButton
+import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pizza.R
 import com.example.pizza.ui.main.model.MainViewModel
 
-class ExtrasItemAdapter (private val dataset: List<String>,
-                         private val sharedViewModel: MainViewModel
-) : RecyclerView.Adapter<ExtrasItemAdapter.ItemViewHolder>() {
+class PizzaSizeItemAdapter (private val dataset: List<String>,
+                            private val sharedViewModel: MainViewModel
+) : RecyclerView.Adapter<PizzaSizeItemAdapter.ItemViewHolder>() {
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder.
     // Each data item is just an Affirmation object.
     class ItemViewHolder( view: View) : RecyclerView.ViewHolder(view) {
-        val checkBox: CheckBox = view.findViewById(R.id.checkBox)
+        val radioButton: RadioButton = view.findViewById(R.id.size_radio_button)
     }
 
     /**
@@ -27,7 +28,7 @@ class ExtrasItemAdapter (private val dataset: List<String>,
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         // create a new view
         val adapterLayout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_extras_item, parent, false)
+            .inflate(R.layout.list_pizza_size_item, parent, false)
 
         return ItemViewHolder(adapterLayout)
     }
@@ -37,16 +38,15 @@ class ExtrasItemAdapter (private val dataset: List<String>,
      */
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
-        val prefix = "Extra "
-        holder.checkBox.text = prefix.plus(item)
-        holder.checkBox.isChecked = sharedViewModel.currentPizza.value?.extras?.contains(item)!!
+        holder.radioButton.text = item
+        holder.radioButton.isChecked = sharedViewModel.currentPizza.value?.size.equals(item)
 
-        holder.checkBox.setOnClickListener{
-            if (holder.checkBox.isChecked)
-                sharedViewModel.addExtraIngredient(item)
-            else
-                sharedViewModel.removeExtraIngredient(item)
+        holder.radioButton.setOnClickListener {
+            sharedViewModel.setPizzaSize(item)
+            for (i in 0..dataset.size)
+                notifyItemChanged(i)
         }
+
     }
 
     /**

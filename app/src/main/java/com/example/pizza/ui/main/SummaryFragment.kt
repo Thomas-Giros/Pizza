@@ -35,18 +35,9 @@ class SummaryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Initialize data.
-        val onePizza = Pizza()
-        onePizza.ingredients = listOf("cheddar","mushroom","potato")
-        onePizza.extras = listOf("bacon","cheese")
-        onePizza.name = "michelangelo"
-        onePizza.price = 12.22
-        val myDataset = listOf(onePizza)
-
-        // setting the pizza category to custom (the first element of the array of pizza categories)
-        sharedViewModel.setPizzaCategory(resources.getStringArray(R.array.pizza_categories)[0])
 
         binding?.apply {
-            pizzaTypeRecyclerView.adapter = SummaryItemAdapter( myDataset, sharedViewModel)
+            pizzaTypeRecyclerView.adapter = SummaryItemAdapter( sharedViewModel)
             pizzaTypeRecyclerView.setHasFixedSize(true)
             pizzaTypeRecyclerView.layoutManager = LinearLayoutManager(context)
             summaryFragment = this@SummaryFragment
@@ -54,7 +45,6 @@ class SummaryFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
         }
     }
-
 
     /**
      * Navigate to the next screen to choose pickup date.

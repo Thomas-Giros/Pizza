@@ -9,11 +9,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.pizza.Pizza
 import com.example.pizza.R
 import com.example.pizza.databinding.FragmentStartBinding
+import com.example.pizza.ui.main.model.MainViewModel
 
 class StartFragment : Fragment() {
-
+    private val sharedViewModel: MainViewModel by activityViewModels()
     // Binding object instance corresponding to the fragment_start.xml layout
     // This property is non-null between the onCreateView() and onDestroyView() lifecycle callbacks,
     // when the view hierarchy is attached to the fragment.
@@ -39,7 +41,11 @@ class StartFragment : Fragment() {
      * Start an order with the desired quantity of cupcakes and navigate to the next screen.
      */
     fun goToNextFragment() {
-        //Toast.makeText(activity, "Ordered $quantity cupcake(s)", Toast.LENGTH_SHORT).show()
+        // setting the pizza category to custom (the first element of the array of pizza categories)
+        sharedViewModel.setPizzaCategory(Pizza.categories[0])
+
+        // setting the pizza size to medium
+        sharedViewModel.setPizzaSize(Pizza.sizes[1])
         findNavController().navigate(R.id.action_startFragment_to_pizzaTypeFragment)
     }
 

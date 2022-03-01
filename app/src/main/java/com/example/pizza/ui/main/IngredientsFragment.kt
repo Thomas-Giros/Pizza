@@ -14,6 +14,7 @@ import com.example.pizza.ui.main.adapter.IngredientsItemAdapter
 import com.example.pizza.ui.main.adapter.PizzaTypeItemAdapter
 import com.example.pizza.ui.main.model.MainViewModel
 import androidx.navigation.fragment.findNavController
+import com.example.pizza.Pizza
 
 
 class IngredientsFragment: Fragment() {
@@ -37,7 +38,7 @@ class IngredientsFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Initialize data.
-        val ingredients = resources.getStringArray(R.array.pizza_ingredients).toList()
+        val ingredients = Pizza.ingredients
         // setting the pizza category to custom (the first element of the array of pizza categories)
 
         binding?.apply {
@@ -60,6 +61,7 @@ class IngredientsFragment: Fragment() {
      * Navigate to the next screen to choose pickup date.
      */
     fun goToNextScreen() {
+        sharedViewModel.addPizza()
         findNavController().navigate(R.id.action_ingredientsFragment_to_summaryFragment)
     }
 

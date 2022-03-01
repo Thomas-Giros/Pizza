@@ -55,7 +55,9 @@
                 android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/buttonAdd"
-                tools:text="Subtotal $5.00" />
+                tools:text="Total $5.00"
+                android:text="@{@string/total_price(viewModel.totalPrice)}"
+                />
 
             <Button
                 android:id="@+id/next_button"

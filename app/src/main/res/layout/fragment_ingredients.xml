@@ -74,7 +74,9 @@
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider2"
-                tools:text="Subtotal $5.00" />
+                tools:text="Subtotal $5.00"
+                android:text="@{@string/subtotal_price(viewModel.subTotalPrice)}"
+                />
 
             <Button
                 android:id="@+id/next_button"
@@ -106,7 +108,7 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Main Ingredients"
+                android:text="@string/main_ingredients"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

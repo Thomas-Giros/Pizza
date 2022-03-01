@@ -3,15 +3,13 @@ package com.example.pizza.ui.main.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pizza.Pizza
 import com.example.pizza.R
 import com.example.pizza.ui.main.model.MainViewModel
 
-class SummaryItemAdapter (private val dataset: List<Pizza>,
-                          private val sharedViewModel: MainViewModel
+class SummaryItemAdapter (private val sharedViewModel: MainViewModel
 ) : RecyclerView.Adapter<SummaryItemAdapter.ItemViewHolder>() {
 
     // Provide a reference to the views for each data item
@@ -38,13 +36,13 @@ class SummaryItemAdapter (private val dataset: List<Pizza>,
      * Replace the contents of a view (invoked by the layout manager)
      */
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        val item = dataset[position]
-        holder.pizzaTitle.text = item.name
+        val item = sharedViewModel.allPizzas.value!!.toList()[position]
+        holder.pizzaTitle.text = item.category
         holder.pizzaIngredients.text = item.recipetoString()
     }
 
     /**
      * Return the size of your dataset (invoked by the layout manager)
      */
-    override fun getItemCount() = dataset.size
+    override fun getItemCount() = sharedViewModel.allPizzas.value!!.size
 }

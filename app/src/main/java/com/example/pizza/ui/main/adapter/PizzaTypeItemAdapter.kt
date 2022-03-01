@@ -37,11 +37,12 @@ class PizzaTypeItemAdapter (private val dataset: List<String>,
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
         holder.radioButton.text = item
-        holder.radioButton.isChecked = sharedViewModel.currentPizzaCategory.value.equals(item)
+        holder.radioButton.isChecked = sharedViewModel.currentPizza.value?.category.equals(item)
 
         holder.radioButton.setOnClickListener {
             sharedViewModel.setPizzaCategory(item)
-            notifyDataSetChanged()
+            for (i in 0..dataset.size)
+                notifyItemChanged(i)
         }
 
     }

@@ -1,6 +1,6 @@
 package com.example.pizza.ui.main.adapter
 
-import  android.view.LayoutInflater
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
@@ -37,6 +37,14 @@ class IngredientsItemAdapter (private val dataset: List<String>,
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
         holder.checkBox.text = item
+        holder.checkBox.isChecked = sharedViewModel.currentPizza.value?.ingredients?.contains(item)!!
+
+        holder.checkBox.setOnClickListener{
+            if (holder.checkBox.isChecked)
+                sharedViewModel.addIngredient(item)
+            else
+                sharedViewModel.removeIngredient(item)
+        }
 
     }
 

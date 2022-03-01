@@ -57,7 +57,7 @@
                 android:layout_marginTop="@dimen/side_margin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider"
-                tools:text="Subtotal $5.00"
+                tools:text="Total $5.00"
                 />
 
             <Button
@@ -94,7 +94,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/your_name"
+                    android:textColorHint="#616161"
                     app:layout_constraintBottom_toBottomOf="@+id/divider"
+                    tools:ignore="TextContrastCheck"
                     tools:layout_editor_absoluteX="16dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -109,12 +111,13 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/TextInputEditTextAddress"
+                    style="@style/Widget.Cupcake.TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/your_address"
                     app:layout_constraintBottom_toBottomOf="@+id/divider"
-                    tools:layout_editor_absoluteX="16dp"
-                    style="@style/Widget.Cupcake.TextView"/>
+                    tools:ignore="TextContrastCheck"
+                    tools:layout_editor_absoluteX="16dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <View

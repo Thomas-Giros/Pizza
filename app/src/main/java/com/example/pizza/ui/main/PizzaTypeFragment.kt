@@ -12,6 +12,8 @@ import com.example.pizza.databinding.FragmentPizzaTypeBinding
 import com.example.pizza.ui.main.adapter.PizzaTypeItemAdapter
 import com.example.pizza.ui.main.model.MainViewModel
 import androidx.navigation.fragment.findNavController
+import com.example.pizza.Pizza
+import com.example.pizza.ui.main.adapter.PizzaSizeItemAdapter
 
 
 class PizzaTypeFragment: Fragment() {
@@ -35,14 +37,18 @@ class PizzaTypeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Initialize data.
-        val myDataset = resources.getStringArray(R.array.pizza_categories).toList()
-        // setting the pizza category to custom (the first element of the array of pizza categories)
-        sharedViewModel.setPizzaCategory(resources.getStringArray(R.array.pizza_categories)[0])
+        val pizzaCatData = Pizza.categories
+        val pizzaSizeData = Pizza.sizes
+
 
         binding?.apply {
-            pizzaTypeRecyclerView.adapter = PizzaTypeItemAdapter( myDataset, sharedViewModel)
+            pizzaTypeRecyclerView.adapter = PizzaTypeItemAdapter( pizzaCatData, sharedViewModel)
             pizzaTypeRecyclerView.setHasFixedSize(true)
             pizzaTypeRecyclerView.layoutManager = LinearLayoutManager(context)
+
+            pizzaSizeRecyclerView.adapter = PizzaSizeItemAdapter( pizzaSizeData, sharedViewModel)
+            pizzaSizeRecyclerView.setHasFixedSize(true)
+
             pizzaTypeFragment = this@PizzaTypeFragment
             viewModel = sharedViewModel
             lifecycleOwner = viewLifecycleOwner

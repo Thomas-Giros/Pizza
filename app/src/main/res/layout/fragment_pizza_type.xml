@@ -42,8 +42,10 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/size_options"
-                tools:text="Subtotal $5.00" />
+                app:layout_constraintTop_toBottomOf="@+id/pizza_size_recyclerView"
+                tools:text="Subtotal $5.00"
+                android:text="@{@string/subtotal_price(viewModel.subTotalPrice)}"
+                />
 
             <Button
                 android:id="@+id/next_button"
@@ -81,52 +83,25 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pizza_type_recyclerView" />
 
-            <RadioGroup
-                android:id="@+id/size_options"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/pizza_size_recyclerView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView4">
+                app:layout_constraintTop_toBottomOf="@id/textView4"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal">
 
-                <RadioButton
-                    android:id="@+id/option0"
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/s" />
-
-                <RadioButton
-                    android:id="@+id/option1"
-                    android:layout_width="73dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/m" />
-
-                <RadioButton
-                    android:id="@+id/option2"
-                    android:layout_width="71dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/l" />
-
-                <RadioButton
-                    android:id="@+id/option3"
-                    android:layout_width="76dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/xl" />
-
-                <RadioButton
-                    android:id="@+id/option4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/xxl" />
-            </RadioGroup>
+            </androidx.recyclerview.widget.RecyclerView>
 
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/size"
+                android:text="@string/choose_a_size"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
