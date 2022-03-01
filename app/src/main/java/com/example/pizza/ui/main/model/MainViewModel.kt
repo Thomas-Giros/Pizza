@@ -2,8 +2,10 @@ package com.example.pizza.ui.main.model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.pizza.Pizza
+import java.text.NumberFormat
 import kotlin.random.Random
 
 
@@ -16,10 +18,15 @@ class MainViewModel : ViewModel() {
     val currentPizza: LiveData<Pizza> = _currentPizza
 
     private var _totalPrice = MutableLiveData<Double>()
-    val totalPrice: LiveData<Double> = _totalPrice
+
+    val totalPrice: LiveData<String> = Transformations.map(_totalPrice) {
+        NumberFormat.getCurrencyInstance().format(it)
+    }
 
     private var _subTotalPrice = MutableLiveData<Double>()
-    val subTotalPrice: LiveData<Double> = _subTotalPrice
+    val subTotalPrice: LiveData<String> = Transformations.map(_subTotalPrice) {
+        NumberFormat.getCurrencyInstance().format(it)
+    }
 
 
     init {
@@ -64,9 +71,14 @@ class MainViewModel : ViewModel() {
 
     fun addPizza(){
         _allPizzas.value?.remove(_currentPizza.value!!)
-        _currentPizza.value!!.calculatePrice()
         _allPizzas.value?.add(_currentPizza.value!!)
         calculateTotalPrice()
+    }
+
+    fun removePizza()
+    {
+        _allPizzas.value?.remove(_currentPizza.value!!)
+        resetPizzaValues()
     }
 
     fun calculateTotalPrice(){
@@ -79,6 +91,15 @@ class MainViewModel : ViewModel() {
     fun calculateCurrentPrice(){
         _currentPizza.value?.calculatePrice()
         _subTotalPrice.value = currentPizza.value!!.price
+    }
+
+    /*
+    * Re-initializes the Pizza app data.
+    */
+    fun resetPizzaValues() {
+        _currentPizza.value = Pizza()
+        _totalPrice.value = 0.0
+        _subTotalPrice.value = 0.0
     }
 
     /*

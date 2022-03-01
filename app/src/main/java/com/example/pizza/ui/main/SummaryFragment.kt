@@ -53,8 +53,18 @@ class SummaryFragment : Fragment() {
         findNavController().navigate(R.id.action_summaryFragment_to_endFragment)
     }
 
+    fun orderAnotherPizza(){
+        sharedViewModel.resetPizzaValues()
+        findNavController().navigate(R.id.action_summaryFragment_to_pizzaTypeFragment)
+    }
+
     fun cancelOrder() {
-//        findNavController().navigate(R.id.action_flavorFragment_to_startFragment)
+        if (sharedViewModel.allPizzas.value!!.isNotEmpty()){
+            sharedViewModel.removePizza()
+            findNavController().navigate(R.id.action_summaryFragment_to_pizzaTypeFragment)
+        }else{
+            findNavController().navigate(R.id.action_summaryFragment_to_startFragment)
+        }
     }
 
     /**

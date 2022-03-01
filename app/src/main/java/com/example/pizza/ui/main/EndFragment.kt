@@ -45,6 +45,7 @@ class EndFragment : Fragment() {
      * Submit the order by sharing out the order details to another app via an implicit intent.
      */
     fun sendOrder() {
+
         val orderSummary = ""
         val intent = Intent(Intent.ACTION_SEND)
             .setType("text/plain")
@@ -58,9 +59,9 @@ class EndFragment : Fragment() {
 
     }
 
+
     fun cancelOrder() {
-        sharedViewModel.resetOrder()
-        //findNavController().navigate(R.id.action_summaryFragment_to_startFragment)
+        findNavController().navigate(R.id.action_endFragment_to_summaryFragment)
     }
 
     /**

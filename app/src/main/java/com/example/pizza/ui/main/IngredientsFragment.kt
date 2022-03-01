@@ -66,7 +66,7 @@ class IngredientsFragment: Fragment() {
     }
 
     fun cancelOrder() {
-//        findNavController().navigate(R.id.action_flavorFragment_to_startFragment)
+        findNavController().navigate(R.id.action_ingredientsFragment_to_pizzaTypeFragment)
     }
 
     /**

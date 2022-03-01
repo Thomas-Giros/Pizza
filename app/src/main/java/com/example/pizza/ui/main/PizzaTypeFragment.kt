@@ -64,7 +64,10 @@ class PizzaTypeFragment: Fragment() {
     }
 
     fun cancelOrder() {
-//        findNavController().navigate(R.id.action_flavorFragment_to_startFragment)
+        if (sharedViewModel.allPizzas.value.isNullOrEmpty())
+            findNavController().navigate(R.id.action_endFragment_to_startFragment)
+        else
+            findNavController().navigate(R.id.action_pizzaTypeFragment_to_summaryFragment)
     }
 
     /**
