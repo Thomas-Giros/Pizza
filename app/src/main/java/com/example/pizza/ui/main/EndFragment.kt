@@ -79,9 +79,9 @@ class EndFragment : Fragment() {
     fun showCancelConfirmationDialog() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle("Cancel order")
-            .setMessage("Press Cancel to confirm the cancel order")
+            .setMessage("Press Confirm Cancel Order the cancel order")
             .setCancelable(true)
-            .setNegativeButton("Cancel") { _, _ ->
+            .setNegativeButton("Confirm Cancel Order") { _, _ ->
                 cancelOrder()
             }
             .show()
