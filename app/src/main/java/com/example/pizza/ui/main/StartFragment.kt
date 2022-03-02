@@ -46,6 +46,7 @@ class StartFragment : Fragment() {
 
         // setting the pizza size to medium
         sharedViewModel.setPizzaSize(Pizza.sizes[1])
+
         findNavController().navigate(R.id.action_startFragment_to_pizzaTypeFragment)
     }
 

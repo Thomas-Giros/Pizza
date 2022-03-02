@@ -14,6 +14,7 @@ import com.example.pizza.ui.main.adapter.IngredientsItemAdapter
 import com.example.pizza.ui.main.adapter.PizzaTypeItemAdapter
 import com.example.pizza.ui.main.model.MainViewModel
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pizza.Pizza
 
 
@@ -44,11 +45,12 @@ class IngredientsFragment: Fragment() {
         binding?.apply {
             ingredientsRecyclerView.adapter = IngredientsItemAdapter( ingredients, sharedViewModel)
             ingredientsRecyclerView.setHasFixedSize(true)
-            ingredientsRecyclerView.layoutManager = LinearLayoutManager(context)
+            ingredientsRecyclerView.layoutManager = GridLayoutManager(context, 2)
+
 
             extrasRecyclerView.adapter = ExtrasItemAdapter( ingredients, sharedViewModel)
             extrasRecyclerView.setHasFixedSize(true)
-            extrasRecyclerView.layoutManager = LinearLayoutManager(context)
+            extrasRecyclerView.layoutManager = GridLayoutManager(context, 2)
 
             ingredientsFragment = this@IngredientsFragment
             viewModel = sharedViewModel

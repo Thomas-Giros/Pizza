@@ -19,5 +19,8 @@
     <string name="subtotal_price">Subtotal %s</string>
     <string name="total_price">Total %s</string>
     <string name="main_ingredients">Main Ingredients</string>
+    <string name="minus">-</string>
+    <string name="_0">0</string>
+    <string name="choose_a_number">Choose a number</string>
 
 </resources>

@@ -55,6 +55,12 @@ class SummaryFragment : Fragment() {
 
     fun orderAnotherPizza(){
         sharedViewModel.resetPizzaValues()
+
+        // setting the pizza category to custom (the first element of the array of pizza categories)
+        sharedViewModel.setPizzaCategory(Pizza.categories[0])
+
+        // setting the pizza size to medium
+        sharedViewModel.setPizzaSize(Pizza.sizes[1])
         findNavController().navigate(R.id.action_summaryFragment_to_pizzaTypeFragment)
     }
 
@@ -62,9 +68,15 @@ class SummaryFragment : Fragment() {
         if (sharedViewModel.allPizzas.value!!.isNotEmpty()){
             sharedViewModel.removePizza()
             findNavController().navigate(R.id.action_summaryFragment_to_pizzaTypeFragment)
+            // setting the pizza category to custom (the first element of the array of pizza categories)
+            sharedViewModel.setPizzaCategory(Pizza.categories[0])
+
+            // setting the pizza size to medium
+            sharedViewModel.setPizzaSize(Pizza.sizes[1])
         }else{
             findNavController().navigate(R.id.action_summaryFragment_to_startFragment)
         }
+
     }
 
     /**

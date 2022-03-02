@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -12,6 +13,7 @@ import com.example.pizza.R
 import com.example.pizza.databinding.FragmentEndBinding
 import com.example.pizza.databinding.FragmentSummaryBinding
 import com.example.pizza.ui.main.model.MainViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class EndFragment : Fragment() {
 
@@ -45,23 +47,44 @@ class EndFragment : Fragment() {
      * Submit the order by sharing out the order details to another app via an implicit intent.
      */
     fun sendOrder() {
+        sharedViewModel.setClientName(binding?.endFragment?.binding?.TextInputEditTextName?.text.toString())
+        sharedViewModel.setClientAdress(binding?.endFragment?.binding?.TextInputEditTextAddress?.text.toString())
 
-        val orderSummary = ""
-        val intent = Intent(Intent.ACTION_SEND)
-            .setType("text/plain")
-            .putExtra(Intent.EXTRA_SUBJECT, "pizza order")
-            .putExtra(Intent.EXTRA_TEXT, orderSummary)
+        if (sharedViewModel.clientAdress.value.isNullOrEmpty() || sharedViewModel.clientName.value.isNullOrEmpty() )
+            Toast.makeText(context,"Information missing", Toast.LENGTH_SHORT).show()
+        else
+        {
+            val orderSummary = sharedViewModel.allPizzasToString()
+            val intent = Intent(Intent.ACTION_SEND)
+                .setType("text/plain")
+                .putExtra(Intent.EXTRA_SUBJECT, "pizza order")
+                .putExtra(Intent.EXTRA_TEXT, orderSummary)
 
-        if (activity?.packageManager?.resolveActivity(intent, 0) != null) {
-            startActivity(intent)
+            if (activity?.packageManager?.resolveActivity(intent, 0) != null) {
+                startActivity(intent)
+            }
         }
-
 
     }
 
 
-    fun cancelOrder() {
+    private fun cancelOrder() {
+        sharedViewModel.resetOrder()
         findNavController().navigate(R.id.action_endFragment_to_summaryFragment)
+    }
+
+    /*
+* Creates and shows an AlertDialog with the final score.
+*/
+    fun showCancelConfirmationDialog() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Cancel order")
+            .setMessage("Press Cancel to confirm the cancel order")
+            .setCancelable(true)
+            .setNegativeButton("Cancel") { _, _ ->
+                cancelOrder()
+            }
+            .show()
     }
 
     /**

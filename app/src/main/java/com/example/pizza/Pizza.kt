@@ -9,6 +9,11 @@ class Pizza {
     var ingredients = mutableListOf<String>()
     var extras = mutableListOf<String>()
     var size = ""
+    var numberOrdered = 1
+
+    fun titleToString(): String{
+        return category.plus(" -- ").plus(size).plus(" - ").plus(numberOrdered).plus("x")
+    }
 
     fun recipetoString(): String{
         var recipe = ingredients.joinToString(", ","--  ","  --\n")
@@ -18,6 +23,7 @@ class Pizza {
     }
 
     fun calculatePrice(){
+        price = 0.0
         when (size)
         {
             "S" -> price = 6.0
@@ -29,6 +35,7 @@ class Pizza {
         if (ingredients.size > 2)
             price += (ingredients.size - 2) * 2.0
         price += extras.size * 1.5
+        price *= numberOrdered
     }
 
 

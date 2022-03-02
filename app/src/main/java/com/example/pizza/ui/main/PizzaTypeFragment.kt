@@ -41,6 +41,8 @@ class PizzaTypeFragment: Fragment() {
         val pizzaSizeData = Pizza.sizes
 
 
+        binding!!.numberPizza.text = sharedViewModel.currentPizza.value!!.numberOrdered.toString()
+
         binding?.apply {
             pizzaTypeRecyclerView.adapter = PizzaTypeItemAdapter( pizzaCatData, sharedViewModel)
             pizzaTypeRecyclerView.setHasFixedSize(true)
@@ -56,6 +58,21 @@ class PizzaTypeFragment: Fragment() {
     }
 
 
+    fun morePizza() {
+        sharedViewModel.currentPizza.value!!.numberOrdered = sharedViewModel.currentPizza.value!!.numberOrdered + 1
+        binding!!.numberPizza.text = sharedViewModel.currentPizza.value!!.numberOrdered.toString()
+        sharedViewModel.calculateCurrentPrice()
+    }
+
+    fun lessPizza() {
+        if (sharedViewModel.currentPizza.value!!.numberOrdered > 0)
+            sharedViewModel.currentPizza.value!!.numberOrdered = sharedViewModel.currentPizza.value!!.numberOrdered - 1
+        binding!!.numberPizza.text = sharedViewModel.currentPizza.value!!.numberOrdered.toString()
+        sharedViewModel.calculateCurrentPrice()
+    }
+
+
+
     /**
      * Navigate to the next screen to choose pickup date.
      */
@@ -65,7 +82,7 @@ class PizzaTypeFragment: Fragment() {
 
     fun cancelOrder() {
         if (sharedViewModel.allPizzas.value.isNullOrEmpty())
-            findNavController().navigate(R.id.action_endFragment_to_startFragment)
+            findNavController().navigate(R.id.action_pizzaTypeFragment_to_startFragment)
         else
             findNavController().navigate(R.id.action_pizzaTypeFragment_to_summaryFragment)
     }

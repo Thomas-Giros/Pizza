@@ -37,7 +37,7 @@ class SummaryItemAdapter (private val sharedViewModel: MainViewModel
      */
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = sharedViewModel.allPizzas.value!!.toList()[position]
-        holder.pizzaTitle.text = item.category.plus(" -- ").plus(item.size)
+        holder.pizzaTitle.text = item.titleToString()
         holder.pizzaIngredients.text = item.recipetoString()
     }
 

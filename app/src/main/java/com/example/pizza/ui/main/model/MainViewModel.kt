@@ -28,15 +28,28 @@ class MainViewModel : ViewModel() {
         NumberFormat.getCurrencyInstance().format(it)
     }
 
+    private var _clientName = MutableLiveData<String>()
+    val clientName: LiveData<String> = _clientName
+
+    private var _clientAdress = MutableLiveData<String>()
+    val clientAdress: LiveData<String> = _clientAdress
 
     init {
         resetOrder()
     }
 
+    fun setClientName(name: String){
+        _clientName.value = name
+    }
+
+    fun setClientAdress(address: String){
+        _clientAdress.value = address
+    }
+
+
     fun setPizzaCategory(category :String){
         _currentPizza.value?.category  = category
         setPizzaIngredientsWithRecipe(currentPizza.value?.category.toString())
-        calculateCurrentPrice()
     }
 
     fun setPizzaSize(size :String){
@@ -110,5 +123,16 @@ class MainViewModel : ViewModel() {
         _allPizzas.value = mutableSetOf()
         _totalPrice.value = 0.0
         _subTotalPrice.value = 0.0
+        _clientAdress.value = ""
+        _clientName.value = ""
+    }
+
+    fun allPizzasToString(): String{
+        var stringResult = ""
+        for (p in allPizzas.value!!){
+            stringResult = stringResult.plus(p.titleToString()).plus("\n").plus(p.recipetoString()).plus("\n\n")
+        }
+        stringResult = stringResult.plus(totalPrice.value)
+        return stringResult
     }
 }
